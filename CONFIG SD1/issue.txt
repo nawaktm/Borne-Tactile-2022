@@ -1,0 +1,2 @@
+Raspberry Pi reference 2021-12-02
+Generated using pi-gen, https://github.com/RPi-Distro/pi-gen, fa45ccf5a4b183ee566b36d74fb4b65bf9358bed, stage4

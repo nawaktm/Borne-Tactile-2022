@@ -1,0 +1,15 @@
+I/ Installation de lamp
+https://doc.ubuntu-fr.org/lamp
+installation des paquets: apache2 php mariadb 
+
+Avec les modules les plus courant: php-curl php-gphp-intl php-json php-mbstring php-xml php-zip
+
+TESTS: par le navigateur localhost / 127.0.0.1
+
+CONFIGURATION: apache2 
+suivre la page:https://doc.ubuntu-fr.org/apache2
+CONFIGURATION: MariaDB
+suivre la page: https://doc.ubuntu-fr.org/mariadb
+
+pour :
+apt list \*php\* --installed // voir la liste des paquets installé
