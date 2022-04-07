@@ -1,132 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <title>QR Code</title>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#flip").click(function(){
-                $("#panel").slideToggle("slow");
-                const navbutton = '#navbutton';
-                $(navbutton).click(() => { //Quand on clique sur l'id navbutton
-                    if(!$(navbutton).hasClass('actived')) { //on verfie si il a la classe actived
-                        $(navbutton).addClass('actived') //on ajoute la classe actived
-                    } else {
-                        $(navbutton).removeClass('actived') //on retire la classe actived
-                    }
-            });
-        });
-        });
-        function QR(){
-            var Texte = document.getElementById("QRC").value;
-            var xo = document.getElementById("Dim").value;
-            var url = "http://chart.googleapis.com/chart?&chs="+xo+"x"+xo+"&cht=qr&chl="+Texte+"&choe=UTF-8";
-            document.getElementById("url").value = url;
-            document.getElementById("image").src = url;
+    <script type="text/javascript" src="main.js">
 
-
-        }
     </script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <style>
-       html, body{
-           margin: 0;
-           padding:0;
-           width: 100%;
-           height: 100%;
-           font-family: Arial, sans-serif;
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="main.css">
 
-        }
-        #panel, #flip {
-            padding: 15px;
-            text-align: left;
-            background-color: #e5eecc;
-            
-        }
-
-        #panel {
-            display: none;
-
-        }
-       #panel ul{
-           top: 50%;
-           left: 50%;
-           text-align: center;
-           padding: 0;
-
-       }
-       #panel ul li{
-           list-style: none;
-       }
-       #panel ul li a{
-           padding: 10px;
-           display: inline-block;
-           font-size: 2em;
-           text-decoration: none;
-           text-transform: uppercase;
-           color: #262626;
-       }
-
-       div#content div.menu-trigger:before{
-           content: '\e801';
-           display: inline-block;
-           width: 36px;
-           height: 36px;
-           color: black;
-           font-family: "ico";
-           font-style: normal;
-           font-size: 1.2em;
-           font-weight: normal;
-           font-variant: normal;
-           text-align: center;
-           text-transform: none;
-           line-height: 36px;
-       }
-       span.nav_button {
-           color: #000;
-           font-size: 24px;
-       }
-
-       span.nav_button:hover {
-           cursor: pointer;
-       }
-     #qr{
-           display: flex;
-           justify-content: center;
-           align-items: center;
-       }
-       #generateur{
-           display: flex;
-           justify-content: center;
-           align-items: center;
-       }
-
-    </style>
 </head>
 <body>
-
+<!-- panneau descendant -->
 <div id="flip">
     <span id="navbutton" class="nav_button"><i class="fas fa-bars"></i></span>
 </div>
 <div id="panel">
     <ul>
-        <li><a href="#qr">Accueil</a></li>
+        <li><a href="#qr2">Accueil</a></li>
         <li><a href="#generateur">Générateur QRCodes</a></li>
         <li><a href="#">Se Connecter</a></li>
         <li><a href="#">Portfolio Festival</a></li>
         <li><a href="#">Contacter le festival</a></li>
     </ul>
 </div>
-<div id="qr">
-    <img src="./CONFIG%20ALEXNICO%20SD1/qrcode1site.png" alt="qr code acceuil"/>
+
+<!-- Instructions qr codes -->
+
+<div id="qr2">
+    <img src="qrcode1site.png" alt="qr"/>
 
 </div>
 <div id="generateur">
-    <label type="text" name="Texte QR Code" >Texte QR Code</label> <input type=text id="QRC" > <br>
-    <label type="text" name="Créer le QR Code"></label> <input type="button" value="Créer le QR Code" onclick="QR();"><br>
-    <img src="" id="image"  > <br>
+    <label type="text" name="Texte QR Code" for="QRC">Copier URL</label> <input type=text id="QRC"> <br>
+    <label type="text" name="Générer"></label> <a type="button" href="#popupqrcode" onclick="QR();">générer</a><br>
+    <!-- <label type="text" name="Ajouter la dimension">Dimension <input type=text id="Dim"></label> choix des dimensions-->
 
-    <input type=text id="url"> <br>
+
+    <!-- fenêtre qui fait pop le qr code -->
+    <div class="popover" id="popupqrcode">
+        <div class='content'>
+            <a href="#" class="close" value=".$_GET['page']."></a>
+            <div class='nav'>
+
+                <!-- mise en page du qr code -->
+                <div class='nav_list_item'>
+                    <h1>Voici votre qr code</h1>
+                </div>
+                <div class='nav_list_item'>
+                    <div id="qrcode">
+                        <img alt="QRCODE" src="">
+                    </div>
+
+                    <!-- QR Code -->
+                    <!-- <img src="" id="image"  > <br> -->
+                    <!-- URL du QR Code -->
+                    <!--    <input type=text id="url"> <br> -->
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<!-- QRCode wifi
+<form id="form">
+    <label><span>SSID:</span><input id="ssid" placeholder="SSID"></label>
+    <label><span>Password:</span><input id="password" placeholder="Password"></label>
+
+
+
+    <a id="print" onclick="wifiQRCode();" href="#popupqrcode">générer</a>
+</form>
+-->
+<img id="qr" src="https://zxing.org/w/chart?cht=qr&chs=350x350&chld=L&choe=UTF-8&chl=WIFI%3AS%3Ainvalid_network%3BT%3AWPA%3BP%3Anopassword%3B%3B" />
+<div>
+    <input id="ssid" class="ssid" type="text" placeholder="ssid"/>
+    <input id="pass" class="pass" type="text" placeholder="password" />
+    <button id="update" class="update noprint">Imprimer</button>
+</div>
+</div>
+<script type="text/javascript" src="wifi.js"></script>
+
+
+
+
 </body>
+
 </html>
+
